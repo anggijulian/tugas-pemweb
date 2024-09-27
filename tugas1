@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabel Event dengan JavaScript DOM</title>
+    <style>
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 18px;
+        text-align: left;
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #dddddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Tabel Event</h2>
+    <div id="tabelContainer"></div>
+
+    <script>
+      // Data Event
+      const events = [
+        {
+          no: 1,
+          nama: "Hackathon Nasional",
+          tanggal: "12 Oktober 2024",
+          lokasi: "Jakarta",
+          deskripsi: "Kompetisi pengembangan aplikasi dalam 24 jam",
+        },
+        {
+          no: 2,
+          nama: "Workshop UI/UX",
+          tanggal: "20 November 2024",
+          lokasi: "Bandung",
+          deskripsi: "Pelatihan desain antarmuka dan pengalaman pengguna",
+        },
+        {
+          no: 3,
+          nama: "Seminar AI",
+          tanggal: "5 Desember 2024",
+          lokasi: "Surabaya",
+          deskripsi: "Seminar tentang perkembangan kecerdasan buatan",
+        },
+        {
+          no: 4,
+          nama: "Konferensi Teknologi",
+          tanggal: "15 Januari 2025",
+          lokasi: "Yogyakarta",
+          deskripsi: "Pertemuan ahli teknologi dari seluruh Indonesia",
+        },
+        {
+          no: 5,
+          nama: "Pameran Startup",
+          tanggal: "28 Februari 2025",
+          lokasi: "Bali",
+          deskripsi: "Pameran dan presentasi startup teknologi terbaru",
+        },
+      ];
+
+      // Fungsi untuk membuat tabel event menggunakan DOM
+      function buatTabelEvent() {
+        // Buat elemen tabel
+        const table = document.createElement("table");
+
+        // Buat header tabel
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+
+        const headers = ["No", "Nama Event", "Tanggal", "Lokasi", "Deskripsi"];
+        headers.forEach((text) => {
+          const th = document.createElement("th");
+          th.textContent = text;
+          headerRow.appendChild(th);
+        });
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Buat body tabel
+        const tbody = document.createElement("tbody");
+
+        // Isi body tabel dengan data event
+        events.forEach((event) => {
+          const row = document.createElement("tr");
+
+          Object.values(event).forEach((value) => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.appendChild(cell);
+          });
+
+          tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+
+        // Tambahkan tabel ke dalam div dengan id "tabelContainer"
+        document.getElementById("tabelContainer").appendChild(table);
+      }
+
+      // Panggil fungsi untuk membuat tabel saat halaman dimuat
+      window.onload = buatTabelEvent;
+    </script>
+  </body>
+</html>
